@@ -1,2 +1,2 @@
 The link to live apps is
-https://warframefinderapp-ezjk8py7skh3bvc37ewtkl.streamlit.app/
+https://warframefinderapp-h6g7ctnuvcmhqmvfkwkicf.streamlit.app/
