@@ -1,17 +1,6 @@
 import requests
-import fandom
-def check_relic(relic_name):
-    valuted_relic=[]
-    fandom.set_wiki('WARFRAME')
-    page=fandom.page(title=relic_name)
-    valuted=page.section('Vaulted Relics')
-    lines=valuted.split("\n")
-    for line in lines:
-        valuted_relic.append(line)
 
 
-    vaulted_relic=valuted_relic[13:]
-    return  vaulted_relic
 
 
 
