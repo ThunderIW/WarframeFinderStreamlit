@@ -76,6 +76,6 @@ if get_item:
     for _ in stqdm(range(50),desc=f"Getting relics for {prime_part}"):
         sleep(0.3)
     table=set_data()
-    st.dataframe(table,hide_index=True,use_column_width=True)
+    st.dataframe(table,hide_index=True,use_container_width=True)
 
 
