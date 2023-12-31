@@ -55,8 +55,6 @@ def set_data():
         "Chance": chance_info,
         "Chance of getting item(%)": number_list,
         "Valuted": valuted
-
-
     })
     return  relic_info
 
@@ -78,6 +76,6 @@ if get_item:
     for _ in stqdm(range(50),desc=f"Getting relics for {prime_part}"):
         sleep(0.3)
     table=set_data()
-    st.dataframe(table)
+    st.dataframe(table,hide_index=True,use_column_width=True)
 
 
