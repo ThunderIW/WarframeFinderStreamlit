@@ -38,7 +38,7 @@ primes = get_available_prime()
 
 st.title("WarframeFinder")
 st.text("You can select the item you want from the box below or type in the item\nyou want to find")
-prime_part = st.selectbox(label="Choose the part you want to get", options=primes, key="-i-")
+prime_part = st.selectbox(label="Choose the prime part you want to get", options=primes, key="-i-")
 get_item=st.button(label="Get Relics")
 if get_item:
     for _ in stqdm(range(50),desc=f"Getting relics for {prime_part}"):
