@@ -3,3 +3,4 @@ pandas~=2.1.4
 stqdm~=0.0.5
 requests~=2.31.0
 fandom-py~=0.2.1
+ordered-set~=4.1.0
