@@ -19,8 +19,12 @@ def check_relic():
 
 
 
-def get_planets():
+def get_relic_drop(relic_name):
+    updated_relic_name=f"{relic_name} Relic"
+
     warframe_planets=[]
+    item_loc=[]
+    item_drop_details={}
 
 
     planets = requests.get('https://drops.warframestat.us/data/missionRewards.json').json()
@@ -30,9 +34,56 @@ def get_planets():
 
     for i in warframe_planets:
        rewards = planets['missionRewards'][i]
+
        for r in rewards:
-           print(f"Planet: {i} Node : {r} ")
-           print(planets['missionRewards'][i][r]['rewards'])
+
+           itemToBeRecived=planets['missionRewards'][i][r]['rewards']
+           gameMode=planets['missionRewards'][i][r]['gameMode']
+
+
+
+
+           if type(itemToBeRecived) == dict:
+
+               #print("Has rotations")
+               a_rotation = itemToBeRecived["A"]
+               b_rotation = itemToBeRecived["B"]
+               c_rotation = itemToBeRecived["C"]
+               #print(f"A: {a_rotation}\nB: {b_rotation}\nc: {c_rotation}")
+               for a in a_rotation:
+                   if updated_relic_name in a.values():
+                       print(gameMode)
+
+                       item_drop_details = {
+                       "Planet-node": f"{i} {r}",
+                       "Rotation": "A",
+                       "rarity": a['rarity'],
+                       "chance": a['chance'],
+                        "GameMode": gameMode
+                       }
+                       item_loc.append(item_drop_details)
+
+
+               for b in b_rotation:
+                   if updated_relic_name in b.values():
+                       item_drop_details = {
+                           "Planet-node": f"{i} {r}",
+                           "Rotation": "B",
+                           "rarity": b['rarity'],
+                           "chance": b['chance'],
+                           "GameMode": gameMode }
+                       item_loc.append(item_drop_details)
+
+               for c in c_rotation:
+                   if updated_relic_name in c.values():
+                        item_drop_details = {
+                            "Planet-node": f"{i} {r}",
+                            "Rotation": "C",
+                            "rarity": c['rarity'],
+                            "chance": c['chance'],
+                            "GameMode": gameMode}
+                        item_loc.append(item_drop_details)
+    return item_loc
 
 
 
@@ -86,7 +137,12 @@ def get_prime_part_relic(item_to_find):
 
     #for info in relic_info_return_list:
 
-
-
     return item_list
+
+
+
+
+
+
+
 
