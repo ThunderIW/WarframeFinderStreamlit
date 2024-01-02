@@ -101,9 +101,9 @@ def set_relic_graphs(relic_name):
 primes = get_available_prime()
 
 st.title("WarframeFinder")
-st.text("You can select the item you want from the box below or type in the item\nyou want to find")
+st.text("You can select the item you want from the box below or type in the item")
 prime_part = st.selectbox(label="Choose the prime part you want to get", options=primes, key="-i-")
-get_item=st.button(label="Get Relics")
+get_item=st.button(label="Click here to get relics for your prime item")
 
 if get_item:
 
@@ -111,7 +111,7 @@ if get_item:
     for _ in stqdm(range(100),desc=f"Getting relics for {prime_part}"):
         sleep(0.2)
     st.dataframe(table,hide_index=True)
-    st.subheader("Relics to farm")
+    st.subheader("Relics to farm that are not valuted")
     relics=[r for r in relics_to_farm]
     for r in relics:
         relic_data=set_relic_graphs(r)
