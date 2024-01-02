@@ -118,6 +118,6 @@ if get_item:
             st.dataframe(relic_data,hide_index=True)
 
 
-print
+
 
 
