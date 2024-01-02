@@ -56,7 +56,7 @@ def set_data():
         "Relic name": relic_list,
         "Chance": chance_info,
         "Chance of getting item(%)": number_list,
-        "Valuted": valuted
+        "vaulted": valuted
     })
     return  relic_info,relic_set
 
