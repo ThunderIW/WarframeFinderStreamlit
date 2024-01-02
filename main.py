@@ -65,6 +65,7 @@ def set_data():
 
 def set_relic_graphs(relic_name):
     p=[]
+    n=[]
     R=[]
     RGI=[]
     CGI=[]
@@ -72,20 +73,21 @@ def set_relic_graphs(relic_name):
     info=get_relic_drop(relic_name)
     for loc in info:
         if len(loc)!=0:
-            planetInfo = loc['Planet-node']
+            planet = loc['Planet']
+            Node=loc["Node"]
             Rotation = loc['Rotation']
             rarity_of_getting_item = loc['rarity']
             chance_of_getting_item = loc['chance']
             gamemode = loc['GameMode']
-            print(planetInfo)
-            print(gamemode)
-            p.append(planetInfo)
+            p.append(planet)
+            n.append(Node)
             R.append(Rotation)
             RGI.append(rarity_of_getting_item)
             CGI.append(chance_of_getting_item)
             G.append(gamemode)
     drop_sources=pd.DataFrame({
         "Planet": p,
+        "Node": n,
         "Rotation": R,
         "Rarity of getting item": RGI,
         "Chance of getting item(%)": CGI,

@@ -55,7 +55,8 @@ def get_relic_drop(relic_name):
                        print(gameMode)
 
                        item_drop_details = {
-                       "Planet-node": f"{i} {r}",
+                       "Planet": f"{i}",
+                       "Node": f"{r}",
                        "Rotation": "A",
                        "rarity": a['rarity'],
                        "chance": a['chance'],
@@ -67,7 +68,8 @@ def get_relic_drop(relic_name):
                for b in b_rotation:
                    if updated_relic_name in b.values():
                        item_drop_details = {
-                           "Planet-node": f"{i} {r}",
+                           "Planet": f"{i}",
+                           "Node": f"{r}",
                            "Rotation": "B",
                            "rarity": b['rarity'],
                            "chance": b['chance'],
@@ -77,7 +79,8 @@ def get_relic_drop(relic_name):
                for c in c_rotation:
                    if updated_relic_name in c.values():
                         item_drop_details = {
-                            "Planet-node": f"{i} {r}",
+                            "Planet": f"{i}",
+                            "Node": f"{r}",
                             "Rotation": "C",
                             "rarity": c['rarity'],
                             "chance": c['chance'],
