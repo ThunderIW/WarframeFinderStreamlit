@@ -11,6 +11,18 @@ if "i" not in st.session_state:
     st.session_state.i = None
 
 
+def set_style_for_chance(x:str):
+    if x=="Uncommon":
+        return 'background-color : orange'
+    if x=='Rare':
+        return 'background-color : red'
+    if x=='Common':
+        return 'background-color : green'
+
+
+
+
+
 def set_data():
     relic_list=[]
     chance_info=[]
@@ -50,13 +62,11 @@ def set_data():
 
 
 
-
-
     relic_info=pd.DataFrame({
         "Relic name": relic_list,
         "Chance": chance_info,
         "Chance of getting item(%)": number_list,
-        "vaulted": valuted
+        "Valuted": valuted
     })
     return  relic_info,relic_set
 
@@ -110,14 +120,16 @@ if get_item:
     table, relics_to_farm = set_data()
     for _ in stqdm(range(100),desc=f"Getting relics for {prime_part}"):
         sleep(0.2)
-    st.dataframe(table,hide_index=True)
+    new_dataframe=table.style.map(set_style_for_chance,subset=['Chance'])
+    st.dataframe(new_dataframe,hide_index=True)
     st.subheader("Relics to farm that are not valuted")
     relics=[r for r in relics_to_farm]
     for r in relics:
         relic_data=set_relic_graphs(r)
         if relic_data.empty==False:
             st.write(f'Drop location for {r}')
-            st.dataframe(relic_data,hide_index=True)
+            updated_relic_data=relic_data.style.map(set_style_for_chance,subset=['Rarity of getting item'])
+            st.dataframe(updated_relic_data,hide_index=True)
 
 
 
