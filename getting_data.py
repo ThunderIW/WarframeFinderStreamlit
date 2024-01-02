@@ -142,7 +142,7 @@ def get_prime_part_relic(item_to_find):
 
 
 
-
+print
 
 
 
