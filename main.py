@@ -108,7 +108,7 @@ get_item=st.button(label="Get Relics")
 if get_item:
 
     table, relics_to_farm = set_data()
-    for _ in stqdm(range(50),desc=f"Getting relics for {prime_part}"):
+    for _ in stqdm(range(100),desc=f"Getting relics for {prime_part}"):
         sleep(0.2)
     st.dataframe(table,hide_index=True)
     st.subheader("Relics to farm")
