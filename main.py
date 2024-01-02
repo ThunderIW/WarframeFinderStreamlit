@@ -109,7 +109,7 @@ if get_item:
 
     table, relics_to_farm = set_data()
     for _ in stqdm(range(50),desc=f"Getting relics for {prime_part}"):
-        sleep(0.3)
+        sleep(0.2)
     st.dataframe(table,hide_index=True)
     st.subheader("Relics to farm")
     relics=[r for r in relics_to_farm]
