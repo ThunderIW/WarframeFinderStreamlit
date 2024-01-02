@@ -52,7 +52,6 @@ def get_relic_drop(relic_name):
                #print(f"A: {a_rotation}\nB: {b_rotation}\nc: {c_rotation}")
                for a in a_rotation:
                    if updated_relic_name in a.values():
-                       print(gameMode)
 
                        item_drop_details = {
                        "Planet": f"{i}",
