@@ -4,6 +4,7 @@ import pandas as pd
 from time import sleep
 from stqdm import stqdm
 from ordered_set import OrderedSet
+from datetime import date
 
 counter=0
 # Initialize session_state
@@ -135,7 +136,7 @@ if get_item:
         "Chance of getting item" : st.column_config.ProgressColumn(
             label="Chance of getting item(%)",
             min_value=min_prime_chance-0.01,
-            max_value=max_prime_chance
+            max_value=max_prime_chance+0.01
 
 
 
@@ -160,7 +161,7 @@ if get_item:
                 'Chance of getting item':st.column_config.ProgressColumn(
                     "Chance of getting item(%)",
                     min_value=min_chance-1,
-                    max_value=max_chance,
+                    max_value=max_chance+1,
                     format="%.0f%%"
 
 
@@ -172,7 +173,16 @@ if get_item:
                          )
 
         if relic_data.empty==True:
-            st.subheader(f"Relic {r} is valuted so there is no chance of farming it")
+            st.text(f"Relic {r} is valuted so there is no chance of farming it")
+
+            counter+=1
+
+    if counter==len(relics):
+        today=date.today()
+        year=today.year
+        month=today.month
+        day=today.day
+        st.text(f"{prime_part} is not currently available to get as of {year}-{month}-{day}")
 
 
 
