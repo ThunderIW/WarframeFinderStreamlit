@@ -15,7 +15,7 @@ def set_style_for_chance(x:str):
     if x=="Uncommon":
         return 'background-color : grey'
     if x=='Rare':
-        return 'background-color : gold'
+        return 'background-color : #B8860B'
     if x=='Common':
         return 'background-color : sliver'
 
