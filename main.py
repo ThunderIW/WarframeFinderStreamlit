@@ -15,7 +15,7 @@ def set_style_for_chance(x:str):
     if x=="Uncommon":
         return 'background-color : grey'
     if x=='Rare':
-        return 'background-color : #B8860B'
+        return 'background-color: #B8860B'
     if x=='Common':
         return 'background-color : sliver'
 
@@ -119,7 +119,7 @@ if get_item:
 
     table, relics_to_farm = set_data()
     for _ in stqdm(range(100),desc=f"Getting relics for {prime_part}"):
-        sleep(0.2)
+        sleep(0.1)
     new_dataframe=table.style.map(set_style_for_chance,subset=['Chance'])
     st.dataframe(new_dataframe,hide_index=True)
     st.subheader("Relics to farm that are not valuted")
@@ -128,7 +128,8 @@ if get_item:
         relic_data=set_relic_graphs(r)
         if relic_data.empty==False:
             st.write(f'Drop location for {r}')
-            updated_relic_data=relic_data.style.map(set_style_for_chance,subset=['Rarity of getting item'])
+            updated_relic_data=(relic_data.style.map(set_style_for_chance,subset=['Rarity of getting item']).
+                                format({'Chance of getting item(%)': '{:,.2f}'}))
             st.dataframe(updated_relic_data,hide_index=True)
 
 
