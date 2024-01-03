@@ -128,7 +128,7 @@ if get_item:
 
 
 
-    st.table(new_dataframe)
+    st.dataframe(new_dataframe)
     st.subheader("Relics to farm that are not valuted")
     relics=[r for r in relics_to_farm]
     for r in relics:
@@ -138,7 +138,7 @@ if get_item:
             updated_relic_data=((relic_data.style.map(set_style_for_chance,subset=['Rarity of getting item']).
                                 format({'Chance of getting item(%)': '{:,.2f}'}))
                                 .bar(subset=['Chance of getting item(%)'],color='#C0C0C0'))
-            st.table(updated_relic_data)
+            st.dataframe(updated_relic_data)
 
 
 
