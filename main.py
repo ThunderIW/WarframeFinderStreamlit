@@ -5,7 +5,7 @@ from time import sleep
 from stqdm import stqdm
 from ordered_set import OrderedSet
 
-
+counter=0
 # Initialize session_state
 if "i" not in st.session_state:
     st.session_state.i = None
@@ -54,18 +54,18 @@ def set_data():
     for relic in relic_set:
         if relic in valuted_relic:
             for i in range(4):
-                valuted.append("True")
+                valuted.append("YES")
 
         else:
             for c in range(4):
-                valuted.append("False")
+                valuted.append("NO")
 
 
 
     relic_info=pd.DataFrame({
         "Relic name": relic_list,
-        "Chance": chance_info,
-        "Chance of getting item(%)": number_list,
+        "Rarity of getting item": chance_info,
+        "Chance of getting item": number_list,
         "Valuted": valuted
     })
     return  relic_info,relic_set
@@ -100,7 +100,7 @@ def set_relic_graphs(relic_name):
         "Node": n,
         "Rotation": R,
         "Rarity of getting item": RGI,
-        "Chance of getting item(%)": CGI,
+        "Chance of getting item": CGI,
         "GameMode": G
     })
     return drop_sources
@@ -122,25 +122,57 @@ if get_item:
         sleep(0.1)
 
     new_dataframe=(table.style
-                   .map(set_style_for_chance,subset=['Chance'])
-                   .bar(subset=['Chance of getting item(%)'],color='#C0C0C0'))
+                   .map(set_style_for_chance,subset=['Rarity of getting item'])
+                   .bar(subset=['Chance of getting item'],color='#C0C0C0'))
+
+
+
+    table['Chance of getting item']=table['Chance of getting item']/100
+
+    max_prime_chance=table['Chance of getting item'].max()
+    min_prime_chance=table["Chance of getting item"].min()
+    st.dataframe(new_dataframe,column_config={
+        "Chance of getting item" : st.column_config.ProgressColumn(
+            label="Chance of getting item(%)",
+            min_value=min_prime_chance-0.01,
+            max_value=max_prime_chance
 
 
 
 
-    st.dataframe(new_dataframe)
-    st.subheader("Relics to farm that are not valuted")
+        )
+
+    },hide_index=True)
+    print(table.dtypes)
+
     relics=[r for r in relics_to_farm]
     for r in relics:
         relic_data=set_relic_graphs(r)
         if relic_data.empty==False:
+            st.subheader("Relics to farm that are not valuted")
             st.write(f'Drop location for {r}')
+            max_chance=relic_data['Chance of getting item'].max()
+            min_chance=relic_data['Chance of getting item'].min()
             updated_relic_data=((relic_data.style.map(set_style_for_chance,subset=['Rarity of getting item']).
-                                format({'Chance of getting item(%)': '{:,.2f}'}))
-                                .bar(subset=['Chance of getting item(%)'],color='#C0C0C0'))
-            st.dataframe(updated_relic_data)
+                                format({'Chance of getting item': '{:,.2f}'}))
+                                .bar(subset=['Chance of getting item'],color='#C0C0C0'))
+            st.dataframe(updated_relic_data,column_config={
+                'Chance of getting item':st.column_config.ProgressColumn(
+                    "Chance of getting item(%)",
+                    min_value=min_chance-1,
+                    max_value=max_chance,
+                    format="%.0f%%"
 
 
+
+
+                )
+            },
+            hide_index=True
+                         )
+
+        if relic_data.empty==True:
+            st.subheader(f"Relic {r} is valuted so there is no chance of farming it")
 
 
 
