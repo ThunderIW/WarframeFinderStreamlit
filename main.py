@@ -144,7 +144,6 @@ if get_item:
         )
 
     },hide_index=True)
-    print(table.dtypes)
 
     relics=[r for r in relics_to_farm]
     for r in relics:
