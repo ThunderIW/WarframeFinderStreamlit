@@ -13,11 +13,11 @@ if "i" not in st.session_state:
 
 def set_style_for_chance(x:str):
     if x=="Uncommon":
-        return 'background-color : orange'
+        return 'background-color : grey'
     if x=='Rare':
-        return 'background-color : red'
+        return 'background-color : gold'
     if x=='Common':
-        return 'background-color : green'
+        return 'background-color : sliver'
 
 
 
