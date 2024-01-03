@@ -55,11 +55,11 @@ def set_data():
     for relic in relic_set:
         if relic in valuted_relic:
             for i in range(4):
-                valuted.append("YES")
+                valuted.append(True)
 
         else:
             for c in range(4):
-                valuted.append("NO")
+                valuted.append(False)
 
 
 
@@ -176,12 +176,16 @@ if get_item:
 
             counter+=1
 
+    today = date.today()
+    year = today.year
+    month = today.month
+    day = today.day
     if counter==len(relics):
-        today=date.today()
-        year=today.year
-        month=today.month
-        day=today.day
+
         st.text(f"{prime_part} is not currently available to get as of {year}-{month}-{day}")
+
+    if len(relics)>=1:
+        st.text(f"{prime_part} is currently available to get as of {year}-{month}-{day}")
 
 
 
